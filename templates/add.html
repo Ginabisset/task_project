@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Add New Task{% endblock %}
+
+{% block content %}
+
+<div class="lineUp container modal-content rounded-4 shadow" >
+    <h1 class="modal-header p-5 pb-4 border-bottom-0 heading ">Add a New Task</h1>
+
+    <div class="modal-body p-5 pt-0">
+
+        <form method="POST" >
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="flash">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {{ render_form(form, novalidate=True) }}
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+

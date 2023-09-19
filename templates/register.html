@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}Register{% endblock %}
+
+
+{% block content %}
+
+<div class="container modal-content rounded-4 shadow form lineUp">
+    <h1 class="heading py-3 px-3 my-2">Register</h1>
+    <form class="py-3 px-3 my-3" method="POST">
+       {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="flash">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+      {% endwith %}
+        {{ render_form(form, novalidate=True) }}
+    </form>
+</div>
+
+{% endblock %}
