@@ -9,10 +9,10 @@ from forms import RegisterForm, LoginForm, AddTask
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap5(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 db = SQLAlchemy()
 db.init_app(app)
 
@@ -210,4 +210,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=False)
