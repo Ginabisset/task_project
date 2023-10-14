@@ -59,67 +59,53 @@
 
 
                         <div class="row">
+                            <div class="col mx-2 ">
 
-                                     <h2 class="col-2">Not Started</h2>
-                                        <a href="{{url_for('add', progress='Not Started')}}" class="col-2 text-end link-dark px-1" >
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="auto" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                            <h2  style="overflow-wrap: break-word;">Not Started
+                                        <a href="{{url_for('add', progress='Not Started')}}" class="link-dark text-end"  >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="auto" text-anchor="end"fill="currentColor" class=" text-end bi bi-plus-circle-fill" viewBox="0 0 16 16">
                                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"></path>
                                             </svg>
                                         </a>
-
-                            <h2 class="col-3" style="overflow-wrap: break-word;">In Progress</h2>
-                                        <a href="{{url_for('add', progress='In Progress')}}" class="col-1 text-end link-dark" >
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="auto" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"></path>
-                                            </svg>
-                                        </a>
-                                <h2 class="col-3" style="overflow-wrap: break-word;">Completed </h2>
-                                        <a href="{{url_for('add', progress='Completed')}}" class="col-1 text-end link-dark" >
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="auto" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"></path>
-                                            </svg>
-                                        </a>
+                            </h2>
                             </div>
+
+                            <div class="col mx-2">
+
+                            <h2  style="overflow-wrap: break-word;">In Progress
+                                        <a href="{{url_for('add', progress='In Progress')}}" class="link-dark text-end"  >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="auto" text-anchor="end"fill="currentColor" class=" text-end bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"></path>
+                                            </svg>
+                                        </a>
+                            </h2>
+                            </div>
+                            <div class="col mx-2">
+                            <h2  style="overflow-wrap: break-word;">Completed
+                                        <a href="{{url_for('add', progress='Completed')}}" class="link-dark text-end"  >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="auto" text-anchor="end"fill="currentColor" class=" text-end bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"></path>
+                                            </svg>
+                                        </a>
+                            </h2>
+                            </div>
+                        </div>
+
 
 
 
                         <div class="row ">
 
 
-                            <div id="not-started" class="col-4 wrapper container" ondrop="drop(event)" ondragover="allowDrop(event)" style="background: rgba(255, 255, 255, 0.35) ; border-radius: 25px;">
+                            <div id="not-started" class="col-4 wrapper container" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                                <div style="background: rgba(255, 255, 255, 0.35) ; border-radius: 25px; min-height: 500px;" class="py-4">
                                 {% for task in not_started %}
 
-                                <a id="{{task.id}}" href="{{url_for('details', id=task.id)}}" >
+
+                                <a id="{{task.id}}" href="{{url_for('details', id=task.id)}}" class="" >
 
 
-                                <div  class="card-body my-4 card glow-on-hover"  draggable="true" ondragstart="drag(event)">
-
-                                  <div class="circle float-end"><h5 class="mb-0 mt-2">{{task.due_date.day}}</h5>{{task.due_date.strftime("%b %y")}}</div>
-                                  <h5 class="card-title" >{{task.task_name}} </h5>
-                                  <p class="card-text">{{task.task_description}}</p>
-                                  <a href="{{url_for('edit', id= task.id )}}" class="card-link link-dark">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
-                                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-                                    </svg>
-                                  </a>
-                                  <a href="{{url_for('delete', id= task.id )}}" class="card-link link-dark">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                                    </svg>
-                                  </a>
-                                </div>
-                                  </a>
-                                {% endfor %}
-                            </div>
-
-
-                           <div id="in-progress" class="col-4 wrapper container"  ondrop="drop(event)" ondragover="allowDrop(event)" style="background: rgba(255, 255, 255, 0.35) ; border-radius: 25px; ">
-                                  {% for task in in_progress %}
-
-                               <a id="{{task.id}}" href="{{url_for('details', id=task.id)}}" >
-
-
-                                <div  class="card-body my-4 card glow-on-hover"  draggable="true" ondragstart="drag(event)">
+                                <div  class="mx-3 card-body mb-4 card glow-on-hover"  draggable="true" ondragstart="drag(event)">
 
                                   <div class="circle float-end"><h5 class="mb-0 mt-2">{{task.due_date.day}}</h5>{{task.due_date.strftime("%b %y")}}</div>
                                   <h5 class="card-title" >{{task.task_name}} </h5>
@@ -136,17 +122,52 @@
                                   </a>
                                 </div>
                                   </a>
+
                                 {% endfor %}
+                                    </div>
                             </div>
 
 
-                            <div class="col-4 wrapper" id="completed" ondrop="drop(event)" ondragover="allowDrop(event)" style="background: rgba(255, 255, 255, 0.35) ; border-radius: 25px;">
+                            <div id="in-progress" class="col-4 wrapper container" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                                <div style="background: rgba(255, 255, 255, 0.35) ; border-radius: 25px; min-height: 500px;" class="py-4">
+                                {% for task in in_progress %}
+
+
+                                <a id="{{task.id}}" href="{{url_for('details', id=task.id)}}" class="" >
+
+
+                                <div  class="mx-3 card-body mb-4 card glow-on-hover"  draggable="true" ondragstart="drag(event)">
+
+                                  <div class="circle float-end"><h5 class="mb-0 mt-2">{{task.due_date.day}}</h5>{{task.due_date.strftime("%b %y")}}</div>
+                                  <h5 class="card-title" >{{task.task_name}} </h5>
+                                  <p class="card-text">{{task.task_description}}</p>
+                                  <a href="{{url_for('edit', id= task.id )}}" class="card-link link-dark">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                                    </svg>
+                                  </a>
+                                  <a href="{{url_for('delete', id= task.id )}}" class="card-link link-dark">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                                    </svg>
+                                  </a>
+                                </div>
+                                  </a>
+
+                                {% endfor %}
+                                    </div>
+                            </div>
+
+
+                              <div id="completed" class="col-4 wrapper container" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                                <div style="background: rgba(255, 255, 255, 0.35) ; border-radius: 25px; min-height: 500px;" class="py-4">
                                 {% for task in completed %}
 
-                                <a id="{{task.id}}" href="{{url_for('details', id=task.id)}}" >
+
+                                <a id="{{task.id}}" href="{{url_for('details', id=task.id)}}" class="" >
 
 
-                                <div  class="card-body my-4 card glow-on-hover"  draggable="true" ondragstart="drag(event)">
+                                <div  class="mx-3 card-body mb-4 card glow-on-hover"  draggable="true" ondragstart="drag(event)">
 
                                   <div class="circle float-end"><h5 class="mb-0 mt-2">{{task.due_date.day}}</h5>{{task.due_date.strftime("%b %y")}}</div>
                                   <h5 class="card-title" >{{task.task_name}} </h5>
@@ -163,7 +184,9 @@
                                   </a>
                                 </div>
                                   </a>
+
                                 {% endfor %}
+                                    </div>
                             </div>
     </section>
 
