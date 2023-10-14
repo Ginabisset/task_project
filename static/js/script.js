@@ -1,7 +1,7 @@
 
 
 
-var words = ['quickly and effectively.', 'to make better use of your time.', 'for peace of mind.'],
+var words = ['quickly and effectively.', 'to optimise your time.', 'for peace of mind.'],
     part,
     i = 0,
     offset = 0,
@@ -61,3 +61,5 @@ $('#modal-content').click(function(){
   $(this).addClass('out');
   $('body').removeClass('modal-active');
 });
+
+

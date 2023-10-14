@@ -7,6 +7,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, current_user, UserMixin, logout_user
 from forms import RegisterForm, LoginForm, AddTask
 import os
+import calendar
+
+#https://github.com/SortableJS/Sortable/tree/master/plugins
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -52,13 +55,14 @@ def home():
     if current_user.is_authenticated:
 
         not_started = db.session.execute(db.select(TaskDB).where(
-            (TaskDB.user_id == current_user.id)& (TaskDB.progress == 'Not Started'))).scalars()
+            (TaskDB.user_id == current_user.id) & (TaskDB.progress == 'Not Started')).order_by(TaskDB.due_date)).scalars()
 
         in_progress = db.session.execute(db.select(TaskDB).where(
-                (TaskDB.user_id == current_user.id) & (TaskDB.progress == 'In Progress'))).scalars()
+                (TaskDB.user_id == current_user.id) & (TaskDB.progress == 'In Progress')).order_by(TaskDB.due_date)).scalars()
 
         completed = db.session.execute(db.select(TaskDB).where(
-                (TaskDB.user_id == current_user.id) & (TaskDB.progress == 'Completed'))).scalars()
+                (TaskDB.user_id == current_user.id) & (TaskDB.progress == 'Completed')).order_by(TaskDB.due_date)).scalars()
+
 
         return render_template("index.html", not_started=not_started, in_progress=in_progress, completed=completed)
 
@@ -67,10 +71,10 @@ def home():
 
 
 
-@app.route("/add", methods=["GET", "POST"])
-def add():
+@app.route("/add/<progress>", methods=["GET", "POST"])
+def add(progress):
 
-    form = AddTask()
+    form = AddTask(progress=progress)
     data = form.data
 
     if form.validate_on_submit():
@@ -210,4 +214,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
